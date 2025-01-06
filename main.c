@@ -30,25 +30,29 @@ int main(int argc, char *argv[]) {
         char ip_str[INET_ADDRSTRLEN];
         struct sockaddr_in *ipv4 = (struct sockaddr_in *)res->ai_addr;
         inet_ntop(AF_INET, &(ipv4->sin_addr), ip_str, INET_ADDRSTRLEN);
-        printf(" Adresse IP du serveur : %s\n", ip_str);
+        printf(" Server Ip address : %s\n", ip_str);
     }
      // Socket creation 
     int sockfd = -1;
     if (res != NULL) {
         sockfd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
         if (sockfd == -1) {
-            perror("socket"); 
-            sockfd = 0;
+            perror("Socket creation error");
+            freeaddrinfo(res);
+            return 3;
         }
-    }
+        printf("UDP socket created . Descriptor : %d\n", sockfd);
 
     if (sockfd == -1) {
-        fprintf(stderr, "Failed to create socket\n");
+        fprintf(stderr, "Socket creation fail \n");
+        freeaddrinfo(res);
         return 3;
     }
+
+
+    }
+
      freeaddrinfo(res);
     printf("Host: %s, File: %s\n", host, file);
     return 0;
 }
-
-
