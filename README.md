@@ -1,4 +1,4 @@
-# TP TFTP - Abdelkarim & Youssef
+#  TFTP - Abdelkarim 
 
 ## 1. Utilisation des arguments passés à la ligne de commande
 On lit deux arguments en ligne de commande : l'adresse du serveur TFTP (`host`) et le nom du fichier (`file`). Ces arguments sont nécessaires pour identifier le serveur et le fichier à transférer.
